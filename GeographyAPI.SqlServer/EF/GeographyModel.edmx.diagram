@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9fba92fd0204ee3a32543dce875d62e" Name="Diagram1">
+        <EntityTypeShape EntityType="GlobalStandardsModel.City" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlobalStandardsModel.Continent" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlobalStandardsModel.Country" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlobalStandardsModel.State" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="GlobalStandardsModel.FK_Cities_States" ManuallyRouted="false" />
+        <AssociationConnector Association="GlobalStandardsModel.FK_Countries_Continents" ManuallyRouted="false" />
+        <AssociationConnector Association="GlobalStandardsModel.FK_States_Countries" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

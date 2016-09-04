@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeographyAPI", "GeographyAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeographyAPI.Test", "GeographyAPI.Test\GeographyAPI.Test.csproj", "{D8485C00-385D-41F0-85EB-C9AED9C05B6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeographyAPI.SqlServer", "GeographyAPI.SqlServer\GeographyAPI.SqlServer.csproj", "{34D368FD-F768-45F6-8454-DF9D54713889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D8485C00-385D-41F0-85EB-C9AED9C05B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8485C00-385D-41F0-85EB-C9AED9C05B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8485C00-385D-41F0-85EB-C9AED9C05B6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34D368FD-F768-45F6-8454-DF9D54713889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34D368FD-F768-45F6-8454-DF9D54713889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34D368FD-F768-45F6-8454-DF9D54713889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34D368FD-F768-45F6-8454-DF9D54713889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
