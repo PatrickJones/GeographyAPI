@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using GeographyAPI.SqlServer.EF;
 using System.Web.Http.Cors;
+using GeographyAPI.SqlServer.QueryManager;
+using System.Threading.Tasks;
 
 namespace GeographyAPI.Controllers
 {
@@ -17,6 +19,8 @@ namespace GeographyAPI.Controllers
     public class ContinentsController : ApiController
     {
         private GlobalStandardsEntities db = new GlobalStandardsEntities();
+        private ContinentQueries cq = new ContinentQueries();
+
 
         public ContinentsController(DbContext context)
         {
@@ -30,16 +34,16 @@ namespace GeographyAPI.Controllers
         }
 
         // GET: api/Continents
-        public IQueryable<Continent> GetContinents()
+        public async Task<IEnumerable<Continent>> GetContinentsAsync()
         {
-            return db.Continents;
+            return await cq.GetAllContinentsAsync();
         }
 
         // GET: api/Continents/5
         [ResponseType(typeof(Continent))]
-        public IHttpActionResult GetContinent(int id)
+        public async Task<IHttpActionResult> GetContinent(int id)
         {
-            Continent continent = db.Continents.Find(id);
+            Continent continent = await cq.GetContinentWithCountriesAsync(id);
             if (continent == null)
             {
                 return NotFound();

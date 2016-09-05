@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeographyAPI.SqlServer.QueryManager
 {
-    public class QueryBase : IDisposable
+    public class IDisposableQueryBase : IDisposable
     {
         protected virtual void Dispose(bool disposing)
         {

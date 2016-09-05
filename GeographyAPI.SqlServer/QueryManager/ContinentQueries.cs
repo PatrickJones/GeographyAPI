@@ -1,10 +1,10 @@
 ﻿using GeographyAPI.SqlServer.EF;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
 
 namespace GeographyAPI.SqlServer.QueryManager
 {
@@ -17,8 +17,7 @@ namespace GeographyAPI.SqlServer.QueryManager
             db = (GlobalStandardsEntities)context;
         }
 
-        public ContinentQueries()
-        {}
+        public ContinentQueries() { }
 
         public async Task<ICollection<Continent>> GetAllContinentsAsync()
         {
@@ -37,6 +36,12 @@ namespace GeographyAPI.SqlServer.QueryManager
         {
             db.Configuration.LazyLoadingEnabled = false;
             return await db.Continents.Where(w => w.Name == continentName).FirstOrDefaultAsync();
+        }
+
+        public async Task<Continent> GetContinentWithCountriesAsync(int continentId)
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            return await db.Continents.Include("Countries").Where(w => w.ContinentId == continentId).FirstOrDefaultAsync();
         }
 
         public void Dispose()

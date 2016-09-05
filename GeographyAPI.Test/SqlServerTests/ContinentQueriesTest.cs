@@ -15,6 +15,7 @@ namespace GeographyAPI.Test.SqlServerTests
     public class ContinentQueriesTest
     {
         static List<Continent> continents = new List<Continent>();
+        static List<Country> countries = new List<Country>();
         ContinentQueries conQueries = new ContinentQueries(new GlobalStandardsEntities());
 
         [ClassInitialize]
@@ -24,6 +25,12 @@ namespace GeographyAPI.Test.SqlServerTests
                 new Continent() { ContinentId = 1, Name = "Lion", ContinentCode = "LI" },
                 new Continent() { ContinentId = 2, Name = "Tiger", ContinentCode = "TI" },
                 new Continent() { ContinentId = 3, Name = "Cheeta", ContinentCode = "CH" }
+            };
+
+            countries = new List<Country> {
+                new Country() { Name = "Forest", CountryCode = "FR" },
+                new Country() { Name = "Desert", CountryCode = "DS" },
+                new Country() { Name = "Plain", CountryCode = "PL" }
             };
         }
 
@@ -90,6 +97,35 @@ namespace GeographyAPI.Test.SqlServerTests
             Assert.AreEqual(cont.Name, result.Name);
             Assert.AreEqual(cont.ContinentCode, result.ContinentCode);
         }
+
+        [TestMethod]
+        public async Task Get_Continent_And_Countries()
+        {
+            //Arrange
+            int continentId = 2;
+            var single = continents.Where(w => w.ContinentId == continentId).FirstOrDefault();
+            single.Countries.Add(countries[0]);
+            single.Countries.Add(countries[1]);
+            single.Countries.Add(countries[2]);
+
+            var set = new Mock<DbSet<Continent>>();
+            set.SetupData(continents);
+
+            var context = new Mock<GlobalStandardsEntities>();
+            context.Setup(c => c.Continents).Returns(set.Object);
+
+            //Act
+            conQueries = new ContinentQueries(context.Object); 
+            var result = await conQueries.GetContinentAsync(continentId);
+            var cont = continents.Where(w => w.ContinentId == continentId).FirstOrDefault();
+
+            //Assert
+            Assert.AreEqual(cont.ContinentId, result.ContinentId);
+            Assert.AreEqual(cont.Name, result.Name);
+            Assert.AreEqual(cont.ContinentCode, result.ContinentCode);
+            Assert.IsTrue(result.Countries.Count == 3);
+        }
+
 
         [TestMethod]
         public async Task Continent_Not_Found()
