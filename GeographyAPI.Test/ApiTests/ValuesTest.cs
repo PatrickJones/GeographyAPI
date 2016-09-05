@@ -1,11 +1,15 @@
-﻿using System;
+﻿using GeographyAPI.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GeographyAPI.Controllers;
-using System.Web.Http;
-using System.Net.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Http;
 
-namespace GeographyAPI.Test
+namespace GeographyAPI.Test.ApiTests
 {
     [TestClass]
     public class ValuesTest
@@ -106,5 +110,6 @@ namespace GeographyAPI.Test
             Assert.AreEqual(idParam, id);
             Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
         }
+
     }
 }
