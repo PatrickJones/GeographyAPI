@@ -9,58 +9,58 @@ using Moq;
 using System.Linq;
 using System.Data.Entity;
 using System.Web.Http.Results;
+using GeographyAPI.SqlServer.QueryManager;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace GeographyAPI.Test.ApiTests
 {
     [TestClass]
     public class ContinentTest
     {
-        //[TestMethod]
-        //public void Continent_Operations()
-        //{
-        //    var continent = new Continent() { Name = "Lion", ContinentCode = "LI" };
-        //    var continents = new List<Continent>();
+        static List<Continent> continents = new List<Continent>();
 
-        //    var mockSet = EntityFrameworkMoqHelper.CreateMockForDbSet<Continent>()
-        //        .SetupForQueryOn(continents)
-        //        .WithAdd(continents, "ContinentId")
-        //        .WithFind(continents, "ContinentId")
-        //        .WithRemove(continents);
+        static Mock<DbSet<Continent>> set = new Mock<DbSet<Continent>>();
+        static Mock<GlobalStandardsEntities> context = new Mock<GlobalStandardsEntities>();
 
-        //    var mockContext = EntityFrameworkMoqHelper.CreateMockForDbContext<GlobalStandardsEntities, Continent>(mockSet);
 
-        //    var continentService = new ContinentsController(mockContext.Object);
-
-        //    continentService.PostContinent(continent);
-        //    Assert.IsTrue(continents.Contains(continent));
-        //}
-
-        [TestMethod]
-        public void Continent_Post_Test()
+        [ClassInitialize]
+        public static void SetMockCollection(TestContext testContext)
         {
-            var continents = new List<Continent>();
-            using (var ctx = new GlobalStandardsEntities())
-            {
-                continents.AddRange(ctx.Continents);
-            }
+            continents = new List<Continent> {
+                new Continent() { ContinentId = 1, Name = "Lion", ContinentCode = "LI" },
+                new Continent() { ContinentId = 2, Name = "Tiger", ContinentCode = "TI" },
+                new Continent() { ContinentId = 3, Name = "Cheeta", ContinentCode = "CH" }
+            };
 
-            int lastId = continents.OrderBy(o => o.ContinentId).Select(s => s.ContinentId).LastOrDefault();
-            lastId = (lastId == 0) ? 1 : ++lastId;
-
-            var continent = new Continent() { ContinentId = lastId, Name = "Lion", ContinentCode = "LI" };
-
-            var set = new Mock<DbSet<Continent>>();
             set.SetupData(continents);
-
-
-            var context = new Mock<GlobalStandardsEntities>();
             context.Setup(c => c.Continents).Returns(set.Object);
-
-            var controller = new ContinentsController(context.Object);
-            var result = (CreatedAtRouteNegotiatedContentResult<Continent>)controller.PostContinent(continent);
-
-            Assert.AreEqual(lastId, result.Content.ContinentId);
         }
 
+        [TestMethod]
+        public async Task Get_Continents_Test()
+        {
+            //Arrange
+            var controller = new ContinentsController(context.Object);
+            //Act
+            var result = await controller.GetContinentsAsync();
+            //Assert
+            Assert.IsTrue(result.Count() > 0);
+        }
+
+        [TestMethod]
+        public async Task Get_Continents_By_Id_Test()
+        {
+            //Arrange
+            int continentId = 2;
+            var controller = new ContinentsController(context.Object);
+            //Act
+            var cont = continents.Where(w => w.ContinentId == continentId).FirstOrDefault();
+            OkNegotiatedContentResult<Continent> result = await controller.GetContinentAsync(continentId) as OkNegotiatedContentResult<Continent>;
+            //Assert
+            Assert.AreEqual(cont.ContinentId, result.Content.ContinentId);
+            Assert.AreEqual(cont.Name, result.Content.Name);
+            Assert.AreEqual(cont.ContinentCode, result.Content.ContinentCode);
+        }
     }
 }

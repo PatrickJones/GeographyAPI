@@ -10,44 +10,39 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GeographyAPI.SqlServer.EF;
+using GeographyAPI.SqlServer.QueryManager;
 
 namespace GeographyAPI.Controllers
 {
     public class CitiesController : ApiController
     {
-        private GlobalStandardsEntities db = new GlobalStandardsEntities();
+        private CityQueries cq = new CityQueries();
+
+        public CitiesController(DbContext context)
+        {
+            this.cq = new CityQueries(context);
+        }
+
+        public CitiesController() { }
+
 
         // GET: api/Cities
-        public IQueryable<City> GetCities()
+        public async Task<ICollection<City>> GetCitiesAsync()
         {
-            return db.Cities;
+            return await cq.GetAllCitiesAsync();
         }
 
         // GET: api/Cities/5
         [ResponseType(typeof(City))]
-        public async Task<IHttpActionResult> GetCity(int id)
+        public async Task<IHttpActionResult> GetCityAsync(int id)
         {
-            City city = await db.Cities.FindAsync(id);
+            City city = await cq.GetCityAsync(id);
             if (city == null)
             {
                 return NotFound();
             }
 
             return Ok(city);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool CityExists(int id)
-        {
-            return db.Cities.Count(e => e.CityId == id) > 0;
         }
     }
 }

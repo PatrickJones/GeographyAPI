@@ -10,44 +10,38 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GeographyAPI.SqlServer.EF;
+using GeographyAPI.SqlServer.QueryManager;
 
 namespace GeographyAPI.Controllers
 {
     public class CountriesController : ApiController
     {
-        private GlobalStandardsEntities db = new GlobalStandardsEntities();
+        private CountryQueries cq = new CountryQueries();
+
+        public CountriesController(DbContext context)
+        {
+            cq = new CountryQueries(context);
+        }
+
+        public CountriesController() { }
 
         // GET: api/Countries
-        public IQueryable<Country> GetCountries()
+        public async Task<IEnumerable<Country>> GetCountriesAsync()
         {
-            return db.Countries;
+            return await cq.GetAllCountriesAsync();
         }
 
         // GET: api/Countries/5
         [ResponseType(typeof(Country))]
-        public async Task<IHttpActionResult> GetCountry(int id)
+        public async Task<IHttpActionResult> GetCountryAsync(int id)
         {
-            Country country = await db.Countries.FindAsync(id);
+            Country country = await cq.GetCountryAsync(id);
             if (country == null)
             {
                 return NotFound();
             }
 
             return Ok(country);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool CountryExists(int id)
-        {
-            return db.Countries.Count(e => e.CountryId == id) > 0;
         }
     }
 }

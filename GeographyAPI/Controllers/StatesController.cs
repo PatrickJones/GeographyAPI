@@ -10,44 +10,39 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GeographyAPI.SqlServer.EF;
+using GeographyAPI.SqlServer.QueryManager;
+using System.Collections;
 
 namespace GeographyAPI.Controllers
 {
     public class StatesController : ApiController
     {
-        private GlobalStandardsEntities db = new GlobalStandardsEntities();
+        private StateQueries sq = new StateQueries();
+
+        public StatesController(DbContext context)
+        {
+            sq = new StateQueries(context);
+        }
+
+        public StatesController() { }
 
         // GET: api/States
-        public IQueryable<State> GetStates()
+        public async Task<ICollection<State>> GetStatesAsync()
         {
-            return db.States;
+            return await sq.GetAllStatesAsync();
         }
 
         // GET: api/States/5
         [ResponseType(typeof(State))]
-        public async Task<IHttpActionResult> GetState(int id)
+        public async Task<IHttpActionResult> GetStateAsync(int id)
         {
-            State state = await db.States.FindAsync(id);
+            State state = await sq.GetStateAsync(id);
             if (state == null)
             {
                 return NotFound();
             }
 
             return Ok(state);
-        }
-     
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool StateExists(int id)
-        {
-            return db.States.Count(e => e.StateId == id) > 0;
         }
     }
 }

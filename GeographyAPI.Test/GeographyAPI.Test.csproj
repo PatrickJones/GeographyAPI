@@ -94,7 +94,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ApiTests\CityTest.cs" />
     <Compile Include="ApiTests\ContinentTest.cs" />
+    <Compile Include="ApiTests\CountryTest.cs" />
+    <Compile Include="ApiTests\StateTest.cs" />
     <Compile Include="ApiTests\ValuesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTests\CityQueriesTest.cs" />

@@ -18,19 +18,19 @@ namespace GeographyAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContinentsController : ApiController
     {
-        private GlobalStandardsEntities db = new GlobalStandardsEntities();
+        //private GlobalStandardsEntities db = new GlobalStandardsEntities();
         private ContinentQueries cq = new ContinentQueries();
-
 
         public ContinentsController(DbContext context)
         {
-            this.db = context as GlobalStandardsEntities;
-            db.Configuration.LazyLoadingEnabled = false;
+            //this.db = context as GlobalStandardsEntities;
+            //db.Configuration.LazyLoadingEnabled = false;
+            cq = new ContinentQueries(context);
         }
 
         public ContinentsController()
         {
-            db.Configuration.LazyLoadingEnabled = false;
+            //db.Configuration.LazyLoadingEnabled = false;
         }
 
         // GET: api/Continents
@@ -41,7 +41,7 @@ namespace GeographyAPI.Controllers
 
         // GET: api/Continents/5
         [ResponseType(typeof(Continent))]
-        public async Task<IHttpActionResult> GetContinent(int id)
+        public async Task<IHttpActionResult> GetContinentAsync(int id)
         {
             Continent continent = await cq.GetContinentWithCountriesAsync(id);
             if (continent == null)
@@ -52,84 +52,15 @@ namespace GeographyAPI.Controllers
             return Ok(continent);
         }
 
-        // PUT: api/Continents/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutContinent(int id, Continent continent)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
-            if (id != continent.ContinentId)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(continent).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ContinentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/Continents
-        [ResponseType(typeof(Continent))]
-        public IHttpActionResult PostContinent(Continent continent)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Continents.Add(continent);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = continent.ContinentId }, continent);
-        }
-
-        // DELETE: api/Continents/5
-        [ResponseType(typeof(Continent))]
-        public IHttpActionResult DeleteContinent(int id)
-        {
-            Continent continent = db.Continents.Find(id);
-            if (continent == null)
-            {
-                return NotFound();
-            }
-
-            db.Continents.Remove(continent);
-            db.SaveChanges();
-
-            return Ok(continent);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ContinentExists(int id)
-        {
-            return db.Continents.Count(e => e.ContinentId == id) > 0;
-        }
     }
 }
