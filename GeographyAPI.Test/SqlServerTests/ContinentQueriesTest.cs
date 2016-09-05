@@ -16,7 +16,11 @@ namespace GeographyAPI.Test.SqlServerTests
     {
         static List<Continent> continents = new List<Continent>();
         static List<Country> countries = new List<Country>();
-        ContinentQueries conQueries = new ContinentQueries(new GlobalStandardsEntities());
+        ContinentQueries conQueries;
+
+        static Mock<DbSet<Continent>> set = new Mock<DbSet<Continent>>();
+        static Mock<GlobalStandardsEntities> context = new Mock<GlobalStandardsEntities>();
+
 
         [ClassInitialize]
         public static void SetMockCollection(TestContext testContext)
@@ -28,24 +32,22 @@ namespace GeographyAPI.Test.SqlServerTests
             };
 
             countries = new List<Country> {
-                new Country() { Name = "Forest", CountryCode = "FR" },
-                new Country() { Name = "Desert", CountryCode = "DS" },
-                new Country() { Name = "Plain", CountryCode = "PL" }
+                new Country() { CountryId = 1, Name = "Forest", CountryCode = "FR" },
+                new Country() { CountryId = 2, Name = "Desert", CountryCode = "DS" },
+                new Country() { CountryId = 3, Name = "Plain", CountryCode = "PL" }
             };
+
+            set.SetupData(continents);
+            context.Setup(c => c.Continents).Returns(set.Object);
         }
 
         [TestMethod]
         public async Task Get_All_Continents()
         {
             //Arrange
-            var set = new Mock<DbSet<Continent>>();
-            set.SetupData(continents);
-
-            var context = new Mock<GlobalStandardsEntities>();
-            context.Setup(c => c.Continents).Returns(set.Object);
+            conQueries = new ContinentQueries(context.Object);
 
             //Act
-            conQueries = new ContinentQueries(context.Object);
             var cqContitnents = await conQueries.GetAllContinentsAsync();
 
             //Assert
@@ -57,15 +59,9 @@ namespace GeographyAPI.Test.SqlServerTests
         {
             //Arrange
             int continentId = 2;
-
-            var set = new Mock<DbSet<Continent>>();
-            set.SetupData(continents);
-
-            var context = new Mock<GlobalStandardsEntities>();
-            context.Setup(c => c.Continents).Returns(set.Object);
+            conQueries = new ContinentQueries(context.Object);
 
             //Act
-            conQueries = new ContinentQueries(context.Object);
             var result = await conQueries.GetContinentAsync(continentId);
             var cont = continents.Where(w => w.ContinentId == continentId).FirstOrDefault();
 
@@ -80,15 +76,9 @@ namespace GeographyAPI.Test.SqlServerTests
         {
             //Arrange
             string continentName = "Lion";
-
-            var set = new Mock<DbSet<Continent>>();
-            set.SetupData(continents);
-
-            var context = new Mock<GlobalStandardsEntities>();
-            context.Setup(c => c.Continents).Returns(set.Object);
+            conQueries = new ContinentQueries(context.Object);
 
             //Act
-            conQueries = new ContinentQueries(context.Object);
             var result = await conQueries.GetContinentAsync(continentName);
             var cont = continents.Where(w => w.Name == continentName).FirstOrDefault();
 
@@ -108,14 +98,9 @@ namespace GeographyAPI.Test.SqlServerTests
             single.Countries.Add(countries[1]);
             single.Countries.Add(countries[2]);
 
-            var set = new Mock<DbSet<Continent>>();
-            set.SetupData(continents);
-
-            var context = new Mock<GlobalStandardsEntities>();
-            context.Setup(c => c.Continents).Returns(set.Object);
+            conQueries = new ContinentQueries(context.Object); 
 
             //Act
-            conQueries = new ContinentQueries(context.Object); 
             var result = await conQueries.GetContinentAsync(continentId);
             var cont = continents.Where(w => w.ContinentId == continentId).FirstOrDefault();
 
@@ -132,17 +117,10 @@ namespace GeographyAPI.Test.SqlServerTests
         {
             //Arrange
             string continentName = "Sheep";
-
-            var set = new Mock<DbSet<Continent>>();
-            set.SetupData(continents);
-
-            var context = new Mock<GlobalStandardsEntities>();
-            context.Setup(c => c.Continents).Returns(set.Object);
+            conQueries = new ContinentQueries(context.Object);
 
             //Act
-            conQueries = new ContinentQueries(context.Object);
             var result = await conQueries.GetContinentAsync(continentName);
-            var cont = continents.Where(w => w.Name == continentName).FirstOrDefault();
 
             //Assert
             Assert.IsNull(result);

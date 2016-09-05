@@ -97,7 +97,10 @@
     <Compile Include="ApiTests\ContinentTest.cs" />
     <Compile Include="ApiTests\ValuesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTests\CityQueriesTest.cs" />
     <Compile Include="SqlServerTests\ContinentQueriesTest.cs" />
+    <Compile Include="SqlServerTests\CountryQueriesTest.cs" />
+    <Compile Include="SqlServerTests\StateQueriesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeographyAPI.SqlServer\GeographyAPI.SqlServer.csproj">

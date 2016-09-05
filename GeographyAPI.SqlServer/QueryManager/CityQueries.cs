@@ -36,7 +36,7 @@ namespace GeographyAPI.SqlServer.QueryManager
 
         }
 
-        public async Task<City> GetContinentAsync(string cityName)
+        public async Task<City> GetCityAsync(string cityName)
         {
             db.Configuration.LazyLoadingEnabled = false;
             return await db.Cities.Where(w => w.Name == cityName).FirstOrDefaultAsync();
