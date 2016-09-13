@@ -25,18 +25,30 @@ namespace GeographyAPI.Controllers
 
         public CitiesController() { }
 
-
-        // GET: api/Cities
+        [Route("geography/cities")]
         public async Task<ICollection<City>> GetCitiesAsync()
         {
             return await cq.GetAllCitiesAsync();
         }
 
-        // GET: api/Cities/5
+        [Route("geography/cities/{cityId:int}")]
         [ResponseType(typeof(City))]
-        public async Task<IHttpActionResult> GetCityAsync(int id)
+        public async Task<IHttpActionResult> GetCityAsync(int cityId)
         {
-            City city = await cq.GetCityAsync(id);
+            City city = await cq.GetCityAsync(cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(city);
+        }
+
+        [Route("geography/cities/{cityName}")]
+        [ResponseType(typeof(City))]
+        public async Task<IHttpActionResult> GetCityByNameAsync(string cityName)
+        {
+            City city = await cq.GetCityAsync(cityName);
             if (city == null)
             {
                 return NotFound();

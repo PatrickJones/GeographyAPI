@@ -60,5 +60,19 @@ namespace GeographyAPI.Test.ApiTests
             Assert.AreEqual(city.CityId, result.Content.CityId);
             Assert.AreEqual(city.Name, result.Content.Name);
         }
+
+        [TestMethod]
+        public async Task Get_City_By_Name()
+        {
+            //Arrange
+            string cityName = "Donut";
+            var controller = new CitiesController(context.Object);
+            //Act
+            var city = cities.Where(w => w.Name == cityName).FirstOrDefault();
+            OkNegotiatedContentResult<City> result = await controller.GetCityByNameAsync(cityName) as OkNegotiatedContentResult<City>;
+            //Assert
+            Assert.AreEqual(city.CityId, result.Content.CityId);
+            Assert.AreEqual(city.Name, result.Content.Name);
+        }
      }
 }
