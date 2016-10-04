@@ -228,6 +228,31 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\fonts\flexslider-icon.svg" />
+    <Content Include="Content\css\templatemo-style.css" />
+    <Content Include="Content\img\slider\slide1.jpg" />
+    <Content Include="Content\img\slider\slide2.jpg" />
+    <Content Include="Content\img\slider\slide3.jpg" />
+    <Content Include="Content\img\slider\slide4.jpg" />
+    <Content Include="Content\img\slider\slide5.jpg" />
+    <Content Include="Content\img\slider\slide6.jpg" />
+    <Content Include="Content\img\slider\thumb1.jpg" />
+    <Content Include="Content\img\slider\thumb2.jpg" />
+    <Content Include="Content\img\slider\thumb3.jpg" />
+    <Content Include="Content\img\slider\thumb4.jpg" />
+    <Content Include="Content\img\slider\thumb5.jpg" />
+    <Content Include="Content\img\slider\thumb6.jpg" />
+    <Content Include="Content\img\status.gif" />
+    <Content Include="Content\img\story-bg-1.jpg" />
+    <Content Include="Content\img\story-bg-2.jpg" />
+    <Content Include="Content\img\story-bg-3.jpg" />
+    <Content Include="Content\img\story-bg-4.jpg" />
+    <Content Include="Content\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\js\jquery.backstretch.min.js" />
+    <Content Include="Content\js\jquery.flexslider-min.js" />
+    <Content Include="Content\js\templatemo-script.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -265,6 +290,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\css\fonts\flexslider-icon.eot" />
+    <Content Include="Content\css\fonts\flexslider-icon.ttf" />
+    <Content Include="Content\css\fonts\flexslider-icon.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
@@ -294,6 +322,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.0.min.map" />
+    <Content Include="Views\Shared\_PrimeLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeographyAPI.SqlServer\GeographyAPI.SqlServer.csproj">
