@@ -89,29 +89,112 @@
 
                         <header class="box box-black margin-b-20">
                             <h2 class="box-text page-title-text">Continents</h2>
-                            <select id="continent-name" class="form-control">
-                                <option id="0" value="Continent Name">Continent Name</option>
-                            </select>
                         </header>
-
-                        <div class="content-text">
+                        <select id="continent-drop" class="form-control ">
+                            <option id="0" value="Continent Name">Continent Name</option>
+                        </select>
+                        <div class="content-text-drop">
+                            
                             <p>
                                 Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
                             </p>
-                        </div>
-                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
-                            <select id="continent-name" class="form-control">
-                                <option id="0" value="Continent Name">Continent Name</option>
-                            </select>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
+                                <select id="continent-country-drop" class="form-control ">
+                                    <option id="0" value="Country Name">Country Name</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
+                                <select id="continent-state-drop" class="form-control ">
+                                    <option id="0" value="State Name">State Name</option>
+                                </select>
+                            </div>
+
                         </div>
 
                     </section> <!-- #continent -->
                     <!-- Country -->
-                    <section data-page-id="page-2" class="content content-gallery js-content">
+                    <section data-page-id="page-2" class="content js-content">
 
                         <header class="box box-black margin-b-20">
                             <h2 class="box-text page-title-text">Country</h2>
                         </header>
+
+                        <select id="country-drop" class="form-control ">
+                            <option id="0" value="Country Name">Country Name</option>
+                        </select>
+                        <div class="content-text-drop">
+
+                            <p>
+                                Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                            </p>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
+                                <select id="country-state-drop" class="form-control ">
+                                    <option id="0" value="State Name">State Name</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
+                                <select id="country-city-drop" class="form-control ">
+                                    <option id="0" value="City Name">City Name</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                    </section> <!-- #Country -->
+                    <!-- State -->
+                    <section data-page-id="page-3" class="content js-content">
+
+                        <header class="box box-black margin-b-20">
+                            <h2 class="box-text page-title-text">State</h2>
+                        </header>
+
+                        <select id="state-drop" class="form-control ">
+                            <option id="0" value="State Name">State Name</option>
+                        </select>
+                        <div class="content-text-drop">
+
+                            <p>
+                                Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                            </p>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
+                                <select id="continent-state-drop" class="form-control ">
+                                    <option id="0" value="State Name">State Name</option>
+                                </select>
+                            </div>
+                            @*<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
+                                <select id="state-city-drop" class="form-control ">
+                                    <option id="0" value="City Name">City Name</option>
+                                </select>
+                            </div>*@
+
+                        </div>
+
+                    </section> <!-- #State -->
+                    <!-- City -->
+                    <section data-page-id="page-4" class="content content-gallery js-content">
+
+                        <header class="box box-black margin-b-20">
+                            <h2 class="box-text page-title-text">City</h2>
+                        </header>
+                        
+                        <div class="content-text-drop">
+
+                            <p>
+                                Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                            </p>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
+                                <select id="country-state-drop" class="form-control ">
+                                    <option id="0" value="State Name">State Name</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
+                                <select id="country-city-drop" class="form-control ">
+                                    <option id="0" value="City Name">City Name</option>
+                                </select>
+                            </div>
+
+                        </div>
 
                         <div class="content-text content-text-gallery">
 
@@ -145,60 +228,7 @@
 
                         </div>
 
-                    </section> <!-- #Country -->
-                    <!-- services -->
-                    <section data-page-id="page-3" class="content js-content">
-
-                        <header class="box box-black margin-b-20">
-                            <h2 class="box-text page-title-text">State</h2>
-                        </header>
-
-                        <div class="content-text">
-                            <p>
-                                Download the story theme from templatemo. Quisque placerat turpis non tortor fringilla, in ornare magna eleifend. Etiam mattis varius fringilla.
-                            </p>
-                            <h4>Sub Title One</h4>
-                            <p>
-                                Nullam tortor mauris, bibendum ac ex vel, auctor congue est. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis.
-                            </p>
-                            <h4>Sub Title Two</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut sapien quis ante faucibus tempus. Nam ut dui vitae tellus vehicula porttitor in nec lorem.
-                            </p>
-                        </div>
-
-                    </section> <!-- #services -->
-                    <!-- contact -->
-                    <section data-page-id="page-4" class="content js-content">
-
-                        <header class="box box-black margin-b-20">
-                            <h2 class="box-text page-title-text">City</h2>
-                        </header>
-
-                        <div class="content-text">
-                            <p>
-                                In felis turpis, tincidunt a odio interdum, ornare interdum magna. Proin leo tortor, adipiscing et volutpat tincidunt, imperdiet sit amet purus.
-                            </p>
-                            <form action="index.html" method="post" class="contact-form">
-
-                                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
-                                    <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name" required />
-                                </div>
-                                <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
-                                    <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Email" required />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" id="contact_subject" name="contact_subject" class="form-control" placeholder="Subject" required />
-                                </div>
-                                <div class="form-group">
-                                    <textarea id="contact_message" name="contact_message" class="form-control" rows="4" placeholder="Message" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary submit-btn">Send</button>
-
-                            </form>
-                        </div>
-
-                    </section> <!-- #contact -->
+                    </section> <!-- #State -->
                 </div>
             </div>
 
