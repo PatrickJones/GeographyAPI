@@ -11,25 +11,25 @@ body, html { overflow-x: hidden; }
 /* Preloader */
 
 #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #fff; /* change if the mask should have another color then white */
-    z-index: 99; /* makes sure it stays on top */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #fff; /* change if the mask should have another color then white */
+	z-index: 99; /* makes sure it stays on top */
 }
 
 #status {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    left: 50%; /* centers the loading animation horizontally one the screen */
-    top: 50%; /* centers the loading animation vertically one the screen */
-    background-image: url(../img/status.gif); /* path to your loading animation */
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: -100px 0 0 -100px; /* is width and height divided by two */
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: 50%; /* centers the loading animation horizontally one the screen */
+	top: 50%; /* centers the loading animation vertically one the screen */
+	background-image: url(../img/status.gif); /* path to your loading animation */
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: -100px 0 0 -100px; /* is width and height divided by two */
 }
 
 /* Resets */
@@ -75,6 +75,11 @@ p:last-child { margin-bottom: 0; }
 .content-text-drop {
 	background-color: white;
 	padding: 40px 40px 80px 40px;
+}
+
+.content-text-drop-img {
+	background-color: white;
+	padding: 40px 40px 140px 40px;
 }
 
 .content-text h4 { padding-top: 10px; }
@@ -185,16 +190,16 @@ p:last-child { margin-bottom: 0; }
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    text-align: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+			flex-direction: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+		-ms-flex-pack: center;
+			justify-content: center;
+	text-align: center;
 }
 
 
@@ -202,8 +207,8 @@ p:last-child { margin-bottom: 0; }
 -------------------------------------------- */
 
 .flexslider { 
-    border-radius: 0;
-    margin-bottom: 5px;
+	border-radius: 0;
+	margin-bottom: 5px;
 }
 .flexslider li {
 	margin: 0;
@@ -218,13 +223,13 @@ p:last-child { margin-bottom: 0; }
 #carousel { margin: 0; }
 #carousel li { margin-right: 5px; }
 #carousel img {
-    display: block;
-    opacity: 1;
-    cursor: pointer;
+	display: block;
+	opacity: 1;
+	cursor: pointer;
 }
 #carousel .flex-active-slide img {
-    opacity: 0.5;
-    cursor: default;
+	opacity: 0.5;
+	cursor: default;
 }
 
 
@@ -235,10 +240,10 @@ p:last-child { margin-bottom: 0; }
 .form-group { margin-bottom: 20px; }
 
 .form-control:focus {
-    border-color: rgb(0, 218, 79);
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0, 200, 81,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0, 200, 81, 0.6);
+	border-color: rgb(0, 218, 79);
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0, 200, 81,.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0, 200, 81, 0.6);
 }
 
 .form-control {
