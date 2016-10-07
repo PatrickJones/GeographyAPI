@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="geoApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,8 +90,9 @@
                         <header class="box box-black margin-b-20">
                             <h2 class="box-text page-title-text">Continents</h2>
                         </header>
-                        <select id="continent-drop" class="form-control ">
+                        <select id="continent-drop" class="form-control" ng-controller="ContinentsCtrl">
                             <option id="0" value="Continent Name">Continent Name</option>
+                            <option ng-repeat="continent in continents" value="{{continent.name}}">{{continent.name}}</option>
                         </select>
                         <div class="content-text-drop">
                             
@@ -99,13 +100,15 @@
                                 Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
                             </p>
                             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
-                                <select id="continent-country-drop" class="form-control ">
+                                <select id="continent-country-drop" class="form-control" ng-controller="CountriesCtrl">
                                     <option id="0" value="Country Name">Country Name</option>
+                                    <option ng-repeat="country in countries" value="{{country.name}}">{{country.name}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
-                                <select id="continent-state-drop" class="form-control ">
+                                <select id="continent-state-drop" class="form-control" ng-controller="StatesCtrl">
                                     <option id="0" value="State Name">State Name</option>
+                                    <option ng-repeat="state in states" value="{{state.name}}">{{state.name}}</option>
                                 </select>
                             </div>
 
@@ -119,8 +122,9 @@
                             <h2 class="box-text page-title-text">Country</h2>
                         </header>
 
-                        <select id="country-drop" class="form-control ">
+                        <select id="country-drop" class="form-control" ng-controller="CountriesCtrl">
                             <option id="0" value="Country Name">Country Name</option>
+                            <option ng-repeat="country in countries" value="{{country.name}}">{{country.name}}</option>
                         </select>
                         <div class="content-text-drop">
 
@@ -128,13 +132,15 @@
                                 Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
                             </p>
                             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
-                                <select id="country-state-drop" class="form-control ">
+                                <select id="country-state-drop" class="form-control" ng-controller="StatesCtrl">
                                     <option id="0" value="State Name">State Name</option>
+                                    <option ng-repeat="state in states" value="{{state.name}}">{{state.name}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
-                                <select id="country-city-drop" class="form-control ">
+                                <select id="country-city-drop" class="form-control" ng-controller="CitiesCtrl">
                                     <option id="0" value="City Name">City Name</option>
+                                    <option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
                                 </select>
                             </div>
 
@@ -149,21 +155,20 @@
                             <h2 class="box-text page-title-text">State</h2>
                         </header>
 
-                        <select id="state-drop" class="form-control ">
+                        <select id="state-drop" class="form-control" ng-controller="StatesCtrl">
                             <option id="0" value="State Name">State Name</option>
                         </select>
-                        <div class="content-text-drop-img">
+                        <div class="content-text-drop-img" ng-controller="CitiesCtrl">
 
                             <p>
                                 Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
                             </p>
                             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
-                                <select id="state-city-drop" class="form-control ">
-                                    <option id="0" value="City Name">City Name</option>
+                                <select id="state-city-drop" class="form-control" ng-model="cityList" ng-options="city as city.name for city in cities">
                                 </select>
                             </div>
                             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
-                                <img src="~/Content/img/slider/thumb1.jpg" alt="Thumbnail 1" />
+                                <img src="{{cityList.image}}" alt="Thumbnail 1" />
                             </div>
 
                         </div>
@@ -254,5 +259,6 @@
     <script src="~/Content/js/jquery.backstretch.min.js"></script> <!-- Backstretch http://srobbin.com/jquery-plugins/backstretch/ -->
     <script src="~/Content/js/templatemo-script.js"></script> <!-- Templatemo scripts -->
     <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/app-ang.js"></script>
 </body>
 </html>
