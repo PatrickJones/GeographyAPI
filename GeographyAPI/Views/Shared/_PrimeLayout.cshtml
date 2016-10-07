@@ -157,6 +157,7 @@
 
                         <select id="state-drop" class="form-control" ng-controller="StatesCtrl">
                             <option id="0" value="State Name">State Name</option>
+                            <option ng-repeat="state in states" value="{{state.name}}">{{state.name}}</option>
                         </select>
                         <div class="content-text-drop-img" ng-controller="CitiesCtrl">
 
@@ -187,13 +188,9 @@
                                 Vivamus imperdiet tellus lobortis tellus fermentum, at varius purus tincidunt. Aenean quis tellus molestie, laoreet massa a, maximus est. Interdum et malesuada fames ac ante ipsum primis in faucibus.
                             </p>
                             <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-left">
-                                <select id="country-state-drop" class="form-control ">
-                                    <option id="0" value="State Name">State Name</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 form-group-2-col-right">
-                                <select id="country-city-drop" class="form-control ">
+                                <select id="city-drop" class="form-control" ng-controller="CitiesCtrl">
                                     <option id="0" value="City Name">City Name</option>
+                                    <option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
                                 </select>
                             </div>
 
