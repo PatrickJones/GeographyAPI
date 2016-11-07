@@ -89,6 +89,13 @@ jQuery(function($) {
             $('.js-content').hide();
             $('.js-footer').hide();
             
+            if (currentItemNo === "page-4") {
+                $("#section-container").removeClass("content-wrapper"); // Removes top margin
+            }
+            else {
+                $("#section-container").addClass("content-wrapper"); // adds 365px top margin
+            }
+
             $(".js-content[data-page-id='" + currentItemNo + "']").slideDown('slow', function(){
                 $(".js-footer").fadeIn();
             });                      
