@@ -1,13 +1,16 @@
-﻿var geoApp = angular.module("geoApp", []);
+﻿var geoApp = angular.module("geoApp",
+    [
+        "geoApp.Controllers"
+    ]);
 
 var model = {
-    continents: [
-        { name: "North America" },
-        { name: "South America" },
-        { name: "Asia" },
-        { name: "Africa" },
-        { name: "Europe" }
-    ],
+    //continents: [
+    //    { name: "North America" },
+    //    { name: "South America" },
+    //    { name: "Asia" },
+    //    { name: "Africa" },
+    //    { name: "Europe" }
+    //],
     counrties: [
         { name: "Country 1" },
         { name: "Country 2" },
@@ -25,8 +28,23 @@ var model = {
     ]
 };
 
-geoApp.controller("ContinentsCtrl", function ($scope) {
-    $scope.continents = model.continents;
+
+geoApp.constant("baseUrl", "http://localhost:57043/api/");
+
+geoApp.service("continents", function ($http, baseUrl) {
+    var continentsArray = []
+    $http.get(baseUrl + "continents").then(function (response) {
+        for (var i = 0; i < response.data.length; i++) {
+            var con = response.data[i];
+            continentsArray.push({ name: con.Name });
+        }
+    });
+
+    this.allContinents = continentsArray;
+});
+
+geoApp.controller("ContinentsCtrl", function ($scope, continents) { 
+    $scope.continents = continents.allContinents;
 });
 
 geoApp.controller("CountriesCtrl", function ($scope) {
